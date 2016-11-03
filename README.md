@@ -56,13 +56,13 @@ public class ManagerTest {
 	@Test
 	public void wontCompile() {
 		// ↓↓↓ Won't compile as customers only accept customer type keys ↓↓↓
-		// assertThat(customer.asType(AddressType.B)).isEmpty();
+		// assertThat(customer.asType(AddressType.TENANT_B)).isEmpty();
 		
 		// ↓↓↓ Won't compile as trying to use address type key for customer manager ↓↓↓
-		//manager.put(AddressType.A, new AAddress("1"));
+		//manager.put(AddressType.TENANT_A, new AAddress("1"));
 
 		// ↓↓↓ Won't compile as trying to pass wrong type of model in for type key ↓↓↓
-		//manager.put(CustomerType.A, new BCustomer("1"));
+		//manager.put(CustomerType.TENANT_A, new BCustomer("1"));
 	}
 }
 ```
