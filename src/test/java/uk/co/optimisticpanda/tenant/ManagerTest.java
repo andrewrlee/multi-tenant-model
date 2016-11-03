@@ -20,14 +20,14 @@ public class ManagerTest {
 	@Test
 	public void storeAndRetrieve() {
 	
-		manager.put(CustomerType.A, new CustomerA("1").setDisplayName("Keith"));
-		manager.put(CustomerType.B, new CustomerB("3").setAge(12));
+		manager.put(CustomerType.TENANT_A, new CustomerA("1").setDisplayName("Keith"));
+		manager.put(CustomerType.TENANT_B, new CustomerB("3").setAge(12));
 		
-		Optional<CustomerA> a = manager.find(CustomerType.A, "1");
+		Optional<CustomerA> a = manager.find(CustomerType.TENANT_A, "1");
 		
-		Optional<CustomerB> bEmpty = manager.find(CustomerType.B, "2");
+		Optional<CustomerB> bEmpty = manager.find(CustomerType.TENANT_B, "2");
 		
-		Optional<CustomerB> b = manager.find(CustomerType.B, "3");
+		Optional<CustomerB> b = manager.find(CustomerType.TENANT_B, "3");
 		
 		assertThat(a).isPresent();
 		assertThat(bEmpty).isEmpty();
@@ -43,15 +43,15 @@ public class ManagerTest {
 	@Test
 	public void all() {
 	
-		manager.put(CustomerType.A, new CustomerA("1").setDisplayName("Keith"));
-		manager.put(CustomerType.A, new CustomerA("2").setDisplayName("Mark"));
-		manager.put(CustomerType.A, new CustomerA("3").setDisplayName("Squirral"));
+		manager.put(CustomerType.TENANT_A, new CustomerA("1").setDisplayName("Keith"));
+		manager.put(CustomerType.TENANT_A, new CustomerA("2").setDisplayName("Mark"));
+		manager.put(CustomerType.TENANT_A, new CustomerA("3").setDisplayName("Squirral"));
 		
-		List<CustomerA> as = manager.getAll(CustomerType.A);
+		List<CustomerA> as = manager.getAll(CustomerType.TENANT_A);
 		
 		assertThat(as).extracting(CustomerA::getDisplayName).contains("Keith", "Mark", "Squirral");
 
-		List<CustomerB> bs = manager.getAll(CustomerType.B);
+		List<CustomerB> bs = manager.getAll(CustomerType.TENANT_B);
 		
 		assertThat(bs).isEmpty();
 	}
@@ -60,8 +60,8 @@ public class ManagerTest {
 	public void asType() {
 		Customer customer = new CustomerA("1");
 		
-		assertThat(customer.asType(CustomerType.A)).isPresent();
-		assertThat(customer.asType(CustomerType.B)).isEmpty();
+		assertThat(customer.asType(CustomerType.TENANT_A)).isPresent();
+		assertThat(customer.asType(CustomerType.TENANT_B)).isEmpty();
 	}
 
 	@Test
