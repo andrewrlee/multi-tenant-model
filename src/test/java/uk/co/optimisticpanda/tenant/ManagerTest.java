@@ -18,7 +18,7 @@ public class ManagerTest {
 	private final Manager<Customer> manager = new Manager<>();
 	
 	@Test
-	public void checkStoreAndRetrieve() {
+	public void storeAndRetrieve() {
 	
 		manager.put(CustomerType.A, new CustomerA("1").setDisplayName("Keith"));
 		manager.put(CustomerType.B, new CustomerB("3").setAge(12));
@@ -41,7 +41,7 @@ public class ManagerTest {
 	}
 
 	@Test
-	public void checkAll() {
+	public void all() {
 	
 		manager.put(CustomerType.A, new CustomerA("1").setDisplayName("Keith"));
 		manager.put(CustomerType.A, new CustomerA("2").setDisplayName("Mark"));
